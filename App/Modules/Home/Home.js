@@ -8,6 +8,7 @@ import {
   BottomNavigationTab,
 } from 'react-native-ui-kitten';
 import Calculator from '../Calculator/Calculator';
+import getLang from '../../helper/language/MyLanguange';
 
 const styles = StyleSheet.create({
   container: {
@@ -46,12 +47,15 @@ class Home extends Component {
       <Layout style={styles.container}>
         {tabIndex === 0 ? (
           <>
-            <Text style={styles.text}> Rumahku </Text>
+            <Text style={styles.text}> {getLang({id: 'Home'})} </Text>
             <Button style={styles.buttonCalcu}>Calculator Redux</Button>
           </>
         ) : (
           <>
-            <Text style={styles.text}> Calculator Biasa </Text>
+            <Text style={styles.text}>
+              {' '}
+              {getLang({id: 'Basic Calculator'})}{' '}
+            </Text>
             <Calculator />
           </>
         )}
@@ -59,8 +63,8 @@ class Home extends Component {
           style={styles.bottomNavigation}
           selectedIndex={tabIndex}
           onSelect={this.onTabSelect}>
-          <BottomNavigationTab title="HOME" />
-          <BottomNavigationTab title="YEY" />
+          <BottomNavigationTab title={getLang({id: 'Home'})} />
+          <BottomNavigationTab title={getLang({id: 'Basic Calculator'})} />
         </BottomNavigation>
       </Layout>
     );
