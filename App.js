@@ -3,8 +3,7 @@ import {Provider} from 'react-redux';
 import {store} from './App/redux/store';
 import {mapping, dark} from '@eva-design/eva';
 import {ApplicationProvider} from 'react-native-ui-kitten';
-//import Calculator from './App/Modules/CalculatorRedux/Calculator';
-import Home from './App/Modules/Home/Home';
+import Home from './App/Screen/Home/Home';
 
 const App: () => React$Node = () => {
   return (
