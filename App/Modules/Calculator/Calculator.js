@@ -1,12 +1,21 @@
 import React, {Component} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Button,
-} from 'react-native';
+import {Text, StyleSheet, ScrollView, View} from 'react-native';
+import {Button} from 'react-native-ui-kitten';
+import {whileStatement} from '@babel/types';
+
+const styles = StyleSheet.create({
+  button: {
+    marginHorizontal: 100,
+    // marginVertical: 200,
+    borderRadius: 100,
+    height: 50,
+  },
+  text: {
+    color: '#FFFFFF',
+    fontSize: 200,
+    textAlign: 'center',
+  },
+});
 
 class Calculator extends Component {
   state = {
@@ -36,22 +45,24 @@ class Calculator extends Component {
       <>
         <ScrollView>
           <View>
-            <Text
-              style={{
-                fontSize: 200,
-                textAlign: 'center',
-              }}>
-              {this.state.count}
-            </Text>
+            <Text style={styles.text}>{this.state.count}</Text>
           </View>
           <View>
+            <Button onPress={this.handleIncrement} style={styles.button}>
+              TAMBAHI (+)
+            </Button>
             <Button
-              title="TAMBAHI"
-              onPress={this.handleIncrement}
-              color="green"
-            />
-            <Button title="KURANGI" onPress={this.handleDecrement} />
-            <Button title="RESET" onPress={this.handleReset} color="red" />
+              onPress={this.handleDecrement}
+              style={styles.button}
+              status="warning">
+              KURANGI (-)
+            </Button>
+            <Button
+              onPress={this.handleReset}
+              style={styles.button}
+              status="danger">
+              RESET (0)
+            </Button>
           </View>
         </ScrollView>
       </>

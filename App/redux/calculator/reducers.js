@@ -4,7 +4,7 @@ const initState = {
   count: 0,
 };
 
-export default function taxesReducer(state = initState, action) {
+export default function calculatorReducer(state = initState, action) {
   switch (action.type) {
     case actions.INCREMENT: {
       return {
