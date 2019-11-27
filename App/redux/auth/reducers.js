@@ -2,6 +2,7 @@ import actions from './actions';
 
 const initState = {
   selectedLanguage: 'ID',
+  selectedTheme: 'dark',
 };
 
 export default function authReducer(state = initState, action) {
@@ -12,7 +13,12 @@ export default function authReducer(state = initState, action) {
         selectedLanguage: action.payload.selectedLanguage,
       };
     }
-
+    case actions.SWITCH_THEME: {
+      return {
+        ...state,
+        selectedTheme: action.payload.selectedTheme,
+      };
+    }
     default: {
       return state;
     }

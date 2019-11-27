@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
-import {StyleSheet, ScrollView, View, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import actions from '../../redux/calculator/actions';
-import {Button, Layout} from 'react-native-ui-kitten';
+import {Button, Layout, Text} from 'react-native-ui-kitten';
 import getLang from '../../helper/language/MyLanguange';
 
 const styles = StyleSheet.create({
@@ -17,9 +17,11 @@ const styles = StyleSheet.create({
     height: 50,
   },
   text: {
-    color: '#FFFFFF',
-    fontSize: 200,
+    marginVertical: 50,
+    marginHorizontal: 'auto',
+    fontSize: 45,
     textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
 
@@ -42,7 +44,9 @@ class CalculatorRedux extends Component {
       <>
         <Layout style={styles.layout}>
           <View>
-            <Text style={styles.text}>{count}</Text>
+            <Text category="h1" style={styles.text}>
+              {count}
+            </Text>
           </View>
           <View>
             <Button onPress={this.handleIncrement} style={styles.button}>

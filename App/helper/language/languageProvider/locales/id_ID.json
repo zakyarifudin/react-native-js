@@ -7,6 +7,10 @@
   "Decrement": "Kurang",
   "Reset": "Reset",
   "Theme": "Tema",
+  "Dark": "Gelap",
+  "Light": "Terang",
+  "dark": "Gelap",
+  "light": "Terang",
   "Basic Calculator": "Kalkulator Biasa",
   "Redux Calculator": "Kalkulator Redux"
 }

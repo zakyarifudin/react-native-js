@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import {StyleSheet, ScrollView, View} from 'react-native';
+import {connect} from 'react-redux';
+import {compose} from 'redux';
+import {ScrollView, View, StyleSheet} from 'react-native';
 import {Button, Text} from 'react-native-ui-kitten';
+import actions from '../../redux/auth/actions';
 import getLang from '../../helper/language/MyLanguange';
 
 const styles = StyleSheet.create({
@@ -19,53 +22,33 @@ const styles = StyleSheet.create({
   },
 });
 
-class Calculator extends Component {
-  state = {
-    count: 0,
-  };
-
-  handleIncrement = () => {
-    this.setState({
-      count: this.state.count + 1,
-    });
-  };
-
-  handleDecrement = () => {
-    this.setState({
-      count: this.state.count - 1,
-    });
-  };
-
-  handleReset = () => {
-    this.setState({
-      count: 0,
-    });
+class SwitchTheme extends Component {
+  handleSwitchTheme = selectedTheme => {
+    const {switchTheme} = this.props;
+    switchTheme(selectedTheme);
   };
 
   render() {
+    const {selectedTheme} = this.props.auth;
     return (
       <>
         <ScrollView>
           <View>
             <Text category="h1" style={styles.text}>
-              {this.state.count}
+              {getLang({id: selectedTheme})}
             </Text>
           </View>
           <View>
-            <Button onPress={this.handleIncrement} style={styles.button}>
-              {getLang({id: 'Increment'})} (+)
+            <Button
+              onPress={() => this.handleSwitchTheme('dark')}
+              style={styles.button}>
+              {getLang({id: 'Dark'})}
             </Button>
             <Button
-              onPress={this.handleDecrement}
-              style={styles.button}
-              status="warning">
-              {getLang({id: 'Decrement'})} (-)
-            </Button>
-            <Button
-              onPress={this.handleReset}
+              onPress={() => this.handleSwitchTheme('light')}
               style={styles.button}
               status="danger">
-              {getLang({id: 'Reset'})} (0)
+              {getLang({id: 'Light'})}
             </Button>
           </View>
         </ScrollView>
@@ -74,4 +57,10 @@ class Calculator extends Component {
   }
 }
 
-export default Calculator;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+  };
+};
+
+export default compose(connect(mapStateToProps, actions))(SwitchTheme);

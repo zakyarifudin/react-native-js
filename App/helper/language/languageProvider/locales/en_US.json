@@ -7,6 +7,10 @@
   "Decrement": "Decrement",
   "Reset": "Reset",
   "Theme": "Theme",
+  "Dark": "Dark",
+  "Light": "Light",
+  "dark": "Dark",
+  "light": "Light",
   "Basic Calculator": "Basic Calculator",
   "Redux Calculator": "Redux Calculator"
 }

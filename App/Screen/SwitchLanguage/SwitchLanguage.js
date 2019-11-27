@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
-import {ScrollView, View, Text, StyleSheet} from 'react-native';
-import {Button} from 'react-native-ui-kitten';
+import {ScrollView, View, StyleSheet} from 'react-native';
+import {Button, Text} from 'react-native-ui-kitten';
 import actions from '../../redux/auth/actions';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import getLang from '../../helper/language/MyLanguange';
 
 const styles = StyleSheet.create({
@@ -15,9 +14,11 @@ const styles = StyleSheet.create({
     height: 50,
   },
   text: {
-    color: '#FFFFFF',
-    fontSize: 200,
+    marginVertical: 50,
+    marginHorizontal: 'auto',
+    fontSize: 45,
     textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
 
@@ -33,12 +34,7 @@ class SwitchLanguage extends Component {
       <>
         <ScrollView>
           <View>
-            <Text
-              style={{
-                fontSize: 100,
-                textAlign: 'center',
-                color: Colors.white,
-              }}>
+            <Text category="h1" style={styles.text}>
               {selectedLanguage}
             </Text>
           </View>

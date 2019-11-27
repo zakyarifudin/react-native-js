@@ -12,6 +12,7 @@ import {
 import Calculator from '../Calculator/Calculator';
 import getLang from '../../helper/language/MyLanguange';
 import SwitchLanguage from '../SwitchLanguage/SwitchLanguage';
+import SwitchTheme from '../SwitchTheme/SwitchTheme';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginHorizontal: 'auto',
     textAlign: 'center',
+    fontWeight: 'bold',
   },
   buttonCalcu: {
     marginHorizontal: 100,
@@ -51,7 +53,10 @@ class Home extends Component {
       <Layout style={styles.container}>
         {tabIndex === 0 ? (
           <>
-            <Text style={styles.text}> {getLang({id: 'Home'})} </Text>
+            <Text category="h2" style={styles.text}>
+              {' '}
+              {getLang({id: 'Home'})}{' '}
+            </Text>
             <Button
               style={styles.buttonCalcu}
               onPress={() => navigate('Calculator')}>
@@ -60,17 +65,24 @@ class Home extends Component {
           </>
         ) : tabIndex === 1 ? (
           <>
-            <Text style={styles.text}>{getLang({id: 'Basic Calculator'})}</Text>
+            <Text category="h2" style={styles.text}>
+              {getLang({id: 'Basic Calculator'})}
+            </Text>
             <Calculator />
           </>
         ) : tabIndex === 2 ? (
           <>
-            <Text style={styles.text}>{getLang({id: 'Language'})}</Text>
+            <Text category="h2" style={styles.text}>
+              {getLang({id: 'Language'})}
+            </Text>
             <SwitchLanguage />
           </>
         ) : (
           <>
-            <Text style={styles.text}>{getLang({id: 'Theme'})}</Text>
+            <Text category="h2" style={styles.text}>
+              {getLang({id: 'Theme'})}
+            </Text>
+            <SwitchTheme />
           </>
         )}
         <BottomNavigation
