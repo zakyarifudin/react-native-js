@@ -1,4 +1,9 @@
 {
   "Home": "Home",
-  "Basic Calculator": "Basic Calculator"
+  "Language": "Language",
+  "Increment": "Increment",
+  "Decrement": "Decrement",
+  "Reset": "Reset",
+  "Basic Calculator": "Basic Calculator",
+  "Redux Calculator": "Redux Calculator"
 }

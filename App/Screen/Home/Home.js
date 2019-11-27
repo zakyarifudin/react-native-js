@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {compose} from 'redux';
 import {StyleSheet} from 'react-native';
 import {
   Button,
@@ -9,6 +11,7 @@ import {
 } from 'react-native-ui-kitten';
 import Calculator from '../Calculator/Calculator';
 import getLang from '../../helper/language/MyLanguange';
+import SwitchLanguage from '../SwitchLanguage/SwitchLanguage';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,15 +51,19 @@ class Home extends Component {
         {tabIndex === 0 ? (
           <>
             <Text style={styles.text}> {getLang({id: 'Home'})} </Text>
-            <Button style={styles.buttonCalcu}>Calculator Redux</Button>
+            <Button style={styles.buttonCalcu}>
+              {getLang({id: 'Redux Calculator'})}
+            </Button>
+          </>
+        ) : tabIndex === 1 ? (
+          <>
+            <Text style={styles.text}>{getLang({id: 'Basic Calculator'})}</Text>
+            <Calculator />
           </>
         ) : (
           <>
-            <Text style={styles.text}>
-              {' '}
-              {getLang({id: 'Basic Calculator'})}{' '}
-            </Text>
-            <Calculator />
+            <Text style={styles.text}>{getLang({id: 'Language'})}</Text>
+            <SwitchLanguage />
           </>
         )}
         <BottomNavigation
@@ -65,10 +72,17 @@ class Home extends Component {
           onSelect={this.onTabSelect}>
           <BottomNavigationTab title={getLang({id: 'Home'})} />
           <BottomNavigationTab title={getLang({id: 'Basic Calculator'})} />
+          <BottomNavigationTab title={getLang({id: 'Language'})} />
         </BottomNavigation>
       </Layout>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+  };
+};
+
+export default compose(connect(mapStateToProps))(Home);

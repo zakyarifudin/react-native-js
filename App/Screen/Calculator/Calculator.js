@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, ScrollView, View} from 'react-native';
 import {Button} from 'react-native-ui-kitten';
-import {whileStatement} from '@babel/types';
+import getLang from '../../helper/language/MyLanguange';
 
 const styles = StyleSheet.create({
   button: {
@@ -49,19 +49,19 @@ class Calculator extends Component {
           </View>
           <View>
             <Button onPress={this.handleIncrement} style={styles.button}>
-              TAMBAHI (+)
+              {getLang({id: 'Increment'})} (+)
             </Button>
             <Button
               onPress={this.handleDecrement}
               style={styles.button}
               status="warning">
-              KURANGI (-)
+              {getLang({id: 'Decrement'})} (-)
             </Button>
             <Button
               onPress={this.handleReset}
               style={styles.button}
               status="danger">
-              RESET (0)
+              {getLang({id: 'Reset'})} (0)
             </Button>
           </View>
         </ScrollView>

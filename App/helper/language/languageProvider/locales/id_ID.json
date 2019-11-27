@@ -1,4 +1,9 @@
 {
   "Home": "Beranda",
-  "Basic Calculator": "Kalkulator Biasa"
+  "Language": "Bahasa",
+  "Increment": "Tambah",
+  "Decrement": "Kurang",
+  "Reset": "Reset",
+  "Basic Calculator": "Kalkulator Biasa",
+  "Redux Calculator": "Kalkulator Redux"
 }
