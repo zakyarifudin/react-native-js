@@ -1,9 +1,12 @@
 {
   "Home": "Home",
   "Language": "Language",
+  "Indonesia Language": "Indonesia",
+  "English Language": "English",
   "Increment": "Increment",
   "Decrement": "Decrement",
   "Reset": "Reset",
+  "Theme": "Theme",
   "Basic Calculator": "Basic Calculator",
   "Redux Calculator": "Redux Calculator"
 }

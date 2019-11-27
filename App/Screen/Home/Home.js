@@ -45,13 +45,16 @@ class Home extends Component {
 
   render() {
     const {tabIndex} = this.state;
+    const {navigate} = this.props.navigation;
 
     return (
       <Layout style={styles.container}>
         {tabIndex === 0 ? (
           <>
             <Text style={styles.text}> {getLang({id: 'Home'})} </Text>
-            <Button style={styles.buttonCalcu}>
+            <Button
+              style={styles.buttonCalcu}
+              onPress={() => navigate('Calculator')}>
               {getLang({id: 'Redux Calculator'})}
             </Button>
           </>
@@ -60,10 +63,14 @@ class Home extends Component {
             <Text style={styles.text}>{getLang({id: 'Basic Calculator'})}</Text>
             <Calculator />
           </>
-        ) : (
+        ) : tabIndex === 2 ? (
           <>
             <Text style={styles.text}>{getLang({id: 'Language'})}</Text>
             <SwitchLanguage />
+          </>
+        ) : (
+          <>
+            <Text style={styles.text}>{getLang({id: 'Theme'})}</Text>
           </>
         )}
         <BottomNavigation
@@ -73,11 +80,14 @@ class Home extends Component {
           <BottomNavigationTab title={getLang({id: 'Home'})} />
           <BottomNavigationTab title={getLang({id: 'Basic Calculator'})} />
           <BottomNavigationTab title={getLang({id: 'Language'})} />
+          <BottomNavigationTab title={getLang({id: 'Theme'})} />
         </BottomNavigation>
       </Layout>
     );
   }
 }
+
+//export default Home;
 
 const mapStateToProps = state => {
   return {

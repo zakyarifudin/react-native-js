@@ -1,9 +1,12 @@
 {
   "Home": "Beranda",
   "Language": "Bahasa",
+  "Indonesia Language": "Bahasa Indonesia",
+  "English Language": "Inggris",
   "Increment": "Tambah",
   "Decrement": "Kurang",
   "Reset": "Reset",
+  "Theme": "Tema",
   "Basic Calculator": "Kalkulator Biasa",
   "Redux Calculator": "Kalkulator Redux"
 }

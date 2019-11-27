@@ -5,6 +5,7 @@ import {ScrollView, View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-ui-kitten';
 import actions from '../../redux/auth/actions';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import getLang from '../../helper/language/MyLanguange';
 
 const styles = StyleSheet.create({
   button: {
@@ -45,13 +46,13 @@ class SwitchLanguage extends Component {
             <Button
               onPress={() => this.handleSwitchLanguage('ID')}
               style={styles.button}>
-              ID
+              {getLang({id: 'Indonesia Language'})}
             </Button>
             <Button
               onPress={() => this.handleSwitchLanguage('EN')}
               style={styles.button}
               status="danger">
-              EN
+              {getLang({id: 'English Language'})}
             </Button>
           </View>
         </ScrollView>
