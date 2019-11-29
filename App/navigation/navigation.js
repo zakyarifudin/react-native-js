@@ -5,10 +5,23 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import Home from '../Screen/Home/Home';
 import Calculator from '../Screen/CalculatorRedux/Calculator';
+import Post from '../Screen/Post/Post';
 import getLang from '../helper/language/MyLanguange';
+import {HeaderBackButton} from 'react-navigation-stack';
 
 class Navigation extends Component {
   render() {
+    console.log(this.props.navigation);
+
+    const headerStyle = {
+      headerStyle: {
+        backgroundColor: '#3366FF',
+      },
+      headerTitleStyle: {
+        color: '#FFFFFF',
+      },
+      headerTintColor: '#FFFFFF',
+    };
     //List Route/Navigation
     const AppNavigator = createStackNavigator(
       {
@@ -21,10 +34,15 @@ class Navigation extends Component {
         Calculator: {
           screen: Calculator,
           navigationOptions: {
+            ...headerStyle,
             headerTitle: getLang({id: 'Redux Calculator'}),
-            headerStyle: {
-              backgroundColor: '#3366FF',
-            },
+          },
+        },
+        Post: {
+          screen: Post,
+          navigationOptions: {
+            ...headerStyle,
+            headerTitle: getLang({id: 'Post'}),
           },
         },
       },

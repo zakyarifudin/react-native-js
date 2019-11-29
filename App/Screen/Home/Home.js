@@ -28,9 +28,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
-  buttonCalcu: {
+  buttonCalculator: {
+    marginTop: 100,
     marginHorizontal: 100,
-    marginVertical: 200,
+    //marginVertical: 200,
+    borderRadius: 100,
+    height: 70,
+  },
+  buttonPost: {
+    marginTop: 10,
+    marginHorizontal: 100,
+    //marginVertical: 200,
     borderRadius: 100,
     height: 70,
   },
@@ -58,9 +66,12 @@ class Home extends Component {
               {getLang({id: 'Home'})}{' '}
             </Text>
             <Button
-              style={styles.buttonCalcu}
+              style={styles.buttonCalculator}
               onPress={() => navigate('Calculator')}>
               {getLang({id: 'Redux Calculator'})}
+            </Button>
+            <Button style={styles.buttonPost} onPress={() => navigate('Post')}>
+              {getLang({id: 'Post'})}
             </Button>
           </>
         ) : tabIndex === 1 ? (
