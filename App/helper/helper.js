@@ -1,12 +1,12 @@
 import {store} from '../redux/store';
-import {version, client} from '../../package.json';
+import {version, client, server_url} from '../../package.json';
 import Axios from 'axios';
 
 export const APP_VERSION = version;
 
 export const baseUrl = () => {
   // return localStorage.getItem('server');
-  return 'https://jsonplaceholder.typicode.com/';
+  return server_url;
 };
 
 export const auth = () => {
@@ -108,28 +108,8 @@ export const getNoAuthApi = url => {
       Accept: 'application/json',
     },
   })
-    .then(response => {
-      if (response.ok) {
-        const contentType = response.headers.get('Content-Type') || '';
-
-        if (contentType.includes('application/json')) {
-          return response.json().catch(error => {
-            return Promise.resolve([]);
-          });
-        }
-
-        return Promise.resolve([]);
-      }
-
-      if (response.status > 200) {
-        return Promise.resolve([]);
-      }
-
-      return Promise.resolve([]);
-    })
-    .catch(error => {
-      return Promise.resolve([]);
-    });
+    .then(res => res.json())
+    .catch(error => console.log(error));
 };
 
 // post

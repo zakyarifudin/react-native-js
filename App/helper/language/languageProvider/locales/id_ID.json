@@ -13,5 +13,7 @@
   "light": "Terang",
   "Basic Calculator": "Kalkulator Biasa",
   "Redux Calculator": "Kalkulator Redux",
-  "Post": "Postingan"
+  "Post": "Postingan",
+  "Post Detail": "Rincian Postingan",
+  "No Internet Connection": "Tidak Ada Koneksi Internet !"
 }

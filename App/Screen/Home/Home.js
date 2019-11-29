@@ -70,7 +70,9 @@ class Home extends Component {
               onPress={() => navigate('Calculator')}>
               {getLang({id: 'Redux Calculator'})}
             </Button>
-            <Button style={styles.buttonPost} onPress={() => navigate('Post')}>
+            <Button
+              style={styles.buttonPost}
+              onPress={() => navigate('PostList')}>
               {getLang({id: 'Post'})}
             </Button>
           </>

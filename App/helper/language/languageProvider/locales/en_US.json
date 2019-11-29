@@ -13,5 +13,7 @@
   "light": "Light",
   "Basic Calculator": "Basic Calculator",
   "Redux Calculator": "Redux Calculator",
-  "Post": "Post"
+  "Post": "Post",
+  "Post Detail": "Post Detail",
+  "No Internet Connection": "No Internet Connection!"
 }

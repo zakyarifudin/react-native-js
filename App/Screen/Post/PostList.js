@@ -1,9 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
-import {StyleSheet, FlatList, View} from 'react-native';
+import {
+  StyleSheet,
+  FlatList,
+  View,
+  TouchableOpacity,
+  ToastAndroid,
+} from 'react-native';
 import actions from '../../redux/post/actions';
 import {Layout, Text} from 'react-native-ui-kitten';
+import getLang from '../../helper/language/MyLanguange';
 
 const styles = StyleSheet.create({
   layout: {
@@ -15,7 +22,9 @@ const styles = StyleSheet.create({
     height: 50,
   },
   title: {
-    fontSize: 15,
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
   text: {
     marginHorizontal: 5,
@@ -32,9 +41,18 @@ const styles = StyleSheet.create({
   },
 });
 
-class Post extends Component {
+class PostList extends Component {
   componentDidMount = () => {
     this.handleOnRefresh();
+  };
+
+  componentDidUpdate = () => {
+    const {clearError, post} = this.props;
+    const {error} = post;
+    if (error) {
+      ToastAndroid.show(getLang({id: error}), 25);
+      clearError();
+    }
   };
 
   handleOnRefresh = () => {
@@ -50,14 +68,19 @@ class Post extends Component {
   };
 
   render() {
-    const {posts, loading, start, limit} = this.props.post;
-    console.log(start);
+    const {posts, loading, start} = this.props.post;
+    const {navigate} = this.props.navigation;
+    //console.log(start, posts);
 
     const renderItem = item => (
-      <View key={item.id} style={styles.item}>
-        <Text style={styles.title}>{item.id}</Text>
-        <Text style={styles.text}>{item.body}</Text>
-      </View>
+      <TouchableOpacity
+        key={item.id}
+        onPress={() => navigate('PostDetail', {id: item.id})}>
+        <View style={styles.item}>
+          <Text style={styles.title}>{item.id}</Text>
+          <Text style={styles.text}>{item.title}</Text>
+        </View>
+      </TouchableOpacity>
     );
 
     return (
@@ -86,4 +109,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default compose(connect(mapStateToProps, actions))(Post);
+export default compose(connect(mapStateToProps, actions))(PostList);

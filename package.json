@@ -6,6 +6,7 @@
     "client_id": "1111",
     "client_secret": "121212"
   },
+  "server_url": "https://jsonplaceholder.typicode.com/",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
