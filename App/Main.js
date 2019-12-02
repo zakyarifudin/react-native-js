@@ -4,7 +4,8 @@ import {compose} from 'redux';
 import {mapping, dark, light} from '@eva-design/eva';
 import {ApplicationProvider} from 'react-native-ui-kitten';
 import Navigation from './navigation/navigation';
-import {AsyncStorage, Alert} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import {Alert} from 'react-native';
 import firebase from 'react-native-firebase';
 
 class Main extends Component {
@@ -114,11 +115,13 @@ class Main extends Component {
       .setNotificationId(notificationId)
       .setTitle(title)
       .setBody(body);
+    //.cancelNotification(notificationId);
 
     notification.android.setPriority(
       firebase.notifications.Android.Priority.High,
     ); /// set to High
     notification.android.setChannelId('test-channel'); ///for android 8.0 and above
+    notification.android.setAutoCancel(true); // buat ilangin setelah klik notifnya
 
     // Build a channel
     const channel = new firebase.notifications.Android.Channel(
