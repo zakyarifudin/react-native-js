@@ -63,8 +63,9 @@ class Main extends Component {
     this.notificationListener = firebase
       .notifications()
       .onNotification(notification => {
-        const {title, body} = notification;
-        this.showAlert(title, body);
+        const {notificationId, title, body} = notification;
+        // console.log('67', notification);
+        this.showHeadsUp(notificationId, title, body);
       });
 
     /*
@@ -74,6 +75,7 @@ class Main extends Component {
       .notifications()
       .onNotificationOpened(notificationOpen => {
         const {title, body} = notificationOpen.notification;
+        console.log('background');
         this.showAlert(title, body);
       });
 
@@ -85,7 +87,8 @@ class Main extends Component {
       .getInitialNotification();
     if (notificationOpen) {
       const {title, body} = notificationOpen.notification;
-      this.showAlert(title, body);
+      console.log('closed');
+      this.showAlert('closed ' + title, body);
     }
     /*
      * Triggered for data only payload in foreground
@@ -103,6 +106,31 @@ class Main extends Component {
       [{text: 'OK', onPress: () => console.log('OK Pressed')}],
       {cancelable: false},
     );
+  }
+
+  showHeadsUp(notificationId, title, body) {
+    console.log('112', notificationId, title, body);
+    const notification = new firebase.notifications.Notification()
+      .setNotificationId(notificationId)
+      .setTitle(title)
+      .setBody(body);
+
+    notification.android.setPriority(
+      firebase.notifications.Android.Priority.High,
+    ); /// set to High
+    notification.android.setChannelId('test-channel'); ///for android 8.0 and above
+
+    // Build a channel
+    const channel = new firebase.notifications.Android.Channel(
+      'test-channel',
+      'Test Channel',
+      firebase.notifications.Android.Importance.Max,
+    ).setDescription('My apps test channel');
+
+    // Create the channel
+    firebase.notifications().android.createChannel(channel);
+
+    return firebase.notifications().displayNotification(notification);
   }
 
   render() {
