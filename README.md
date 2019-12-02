@@ -5,3 +5,4 @@ Buat Boilerplate ReactNative pake Javascript termasuk
 2. Saga
 3. Navigation
 4. Multi Bahasa
+5. Push Notification
