@@ -8,6 +8,7 @@ import Calculator from '../Screen/CalculatorRedux/Calculator';
 import PostList from '../Screen/Post/PostList';
 import getLang from '../helper/language/MyLanguange';
 import PostDetail from '../Screen/Post/PostDetail';
+import NavigationService from './navigationService';
 
 class Navigation extends Component {
   render() {
@@ -58,7 +59,13 @@ class Navigation extends Component {
 
     const AppNavigation = createAppContainer(AppNavigator);
 
-    return <AppNavigation />;
+    return (
+      <AppNavigation
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    );
   }
 }
 

@@ -84,6 +84,9 @@ class PostDetail extends Component {
               />
             }>
             <View style={styles.itemTitle}>
+              <Text style={styles.title}>{post.id}</Text>
+            </View>
+            <View style={styles.itemTitle}>
               <Text style={styles.title}>{post.title}</Text>
             </View>
             <View style={styles.itemBody}>

@@ -7,6 +7,7 @@ import Navigation from './navigation/navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Alert} from 'react-native';
 import firebase from 'react-native-firebase';
+import NavigationService from './navigation/navigationService';
 
 class Main extends Component {
   async componentDidMount() {
@@ -64,9 +65,8 @@ class Main extends Component {
     this.notificationListener = firebase
       .notifications()
       .onNotification(notification => {
-        const {notificationId, title, body} = notification;
-        // console.log('67', notification);
-        this.showHeadsUp(notificationId, title, body);
+        // console.log('notif', notification);
+        this.showHeadsUp(notification);
       });
 
     /*
@@ -75,9 +75,10 @@ class Main extends Component {
     this.notificationOpenedListener = firebase
       .notifications()
       .onNotificationOpened(notificationOpen => {
-        const {title, body} = notificationOpen.notification;
-        console.log('background');
-        this.showAlert(title, body);
+        const {data} = notificationOpen.notification;
+        console.log('background', data);
+        NavigationService.navigate(data.route, {id: data.id});
+        //this.showAlert(title, body);
       });
 
     /*
@@ -87,9 +88,10 @@ class Main extends Component {
       .notifications()
       .getInitialNotification();
     if (notificationOpen) {
-      const {title, body} = notificationOpen.notification;
-      console.log('closed');
-      this.showAlert('closed ' + title, body);
+      const {data} = notificationOpen.notification;
+      console.log('closed', data);
+      NavigationService.navigate(data.route, {id: data.id});
+      //this.showAlert('closed ' + title, body);
     }
     /*
      * Triggered for data only payload in foreground
@@ -109,12 +111,15 @@ class Main extends Component {
     );
   }
 
-  showHeadsUp(notificationId, title, body) {
-    console.log('112', notificationId, title, body);
+  showHeadsUp(notif) {
+    console.log('112', notif);
+    const {notificationId, title, body, data} = notif;
+
     const notification = new firebase.notifications.Notification()
       .setNotificationId(notificationId)
       .setTitle(title)
-      .setBody(body);
+      .setBody(body)
+      .setData(data);
     //.cancelNotification(notificationId);
 
     notification.android.setPriority(
